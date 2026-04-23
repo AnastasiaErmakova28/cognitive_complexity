@@ -93,29 +93,9 @@ export OPENAI_API_KEY="ваш_ключ"
 Запустить Jupyter и открыть нужный ноутбук:
 
 ```bash
-jupyter notebook Metrics.ipynb
+jupyter notebook Version4_cognitive_complexity_with_gpt.ipynb
 ```
 
-Минимальный пример расчёта одной из метрик:
-
-```python
-import re, math
-
-def count_syllables_ru(word):
-    vowels = "аеёиоуыэюя"
-    return max(1, sum(1 for ch in word.lower() if ch in vowels))
-
-def fres_ru(text):
-    sents = [s for s in re.split(r'[.!?]+', text) if s.strip()]
-    words = re.findall(r'\b\w+\b', text.lower())
-    if not words or not sents:
-        return 0.0
-    wps = len(words) / len(sents)
-    spw = sum(count_syllables_ru(w) for w in words) / len(words)
-    return 206.835 - 1.3 * wps - 60.1 * spw
-
-print(fres_ru("Некоторый технический текст на русском языке."))
-```
 
 ## Метрики читабельности
 
